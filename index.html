@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gitunia: keyboard-first terminal Git client with a commit graph</title>
+<meta name="description" content="A keyboard-first terminal Git client with a real commit graph, branches, worktrees and vim-style keys.">
+<link rel="canonical" href="https://gitunia.github.io/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gitunia">
+<meta property="og:title" content="Gitunia: keyboard-first terminal Git client with a commit graph">
+<meta property="og:description" content="A keyboard-first terminal Git client with a real commit graph, branches, worktrees and vim-style keys.">
+<meta property="og:url" content="https://gitunia.github.io/">
+<meta property="og:image" content="https://gitunia.github.io/assets/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Gitunia logo, name and a screenshot of the commit graph">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gitunia: keyboard-first terminal Git client with a commit graph">
+<meta name="twitter:description" content="A keyboard-first terminal Git client with a real commit graph, branches, worktrees and vim-style keys.">
+<meta name="twitter:image" content="https://gitunia.github.io/assets/social-preview.png">
+<meta name="twitter:image:alt" content="Gitunia logo, name and a screenshot of the commit graph">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Gitunia","description":"A keyboard-first terminal Git client with a real commit graph, branches, worktrees and vim-style keys.","url":"https://gitunia.github.io/","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, Windows, macOS","license":"https://opensource.org/licenses/MIT","downloadUrl":"https://github.com/Aleksanderis/Gitunia/releases/latest","image":"https://gitunia.github.io/assets/social-preview.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/favicon-180.png">
+<style>
+:root{--bg:#1e1e2e;--fg:#cdd6f4;--muted:#a6adc8;--accent:#89b4fa;--panel:#181825;--border:#313244}
+@media (prefers-color-scheme:light){:root{--bg:#eff1f5;--fg:#4c4f69;--muted:#6c6f85;--accent:#1e66f5;--panel:#e6e9ef;--border:#ccd0da}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,sans-serif}
+main{max-width:52rem;margin:0 auto;padding:2rem 16px 4rem}
+header{text-align:center}
+header img.logo{width:96px;height:96px}
+h1{margin:.5rem 0 0;font-size:2.4rem}
+h2{margin-top:2.5rem;border-bottom:1px solid var(--border);padding-bottom:.3rem}
+a{color:var(--accent)}
+.lead{color:var(--muted);font-size:1.15rem}
+.demo{width:100%;height:auto;border:1px solid var(--border);border-radius:8px}
+.gallery{display:flex;flex-direction:column;gap:2.5rem}
+.feature h3{margin:0 0 .2rem}.feature p{margin:.2rem 0 .8rem;color:var(--muted)}
+.zoom{display:block;cursor:zoom-in}
+.feature img{display:block;width:100%;height:auto;border:1px solid var(--border);border-radius:8px}
+pre,code{font-family:ui-monospace,Menlo,Consolas,monospace}
+pre{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:.8rem 1rem;overflow-x:auto;white-space:pre-wrap;overflow-wrap:anywhere}
+code{background:var(--panel);padding:.1rem .3rem;border-radius:4px}
+pre code{padding:0;background:none}
+ul{padding-left:1.3rem}
+.support{text-align:center;margin-top:2.5rem}.support p{color:var(--muted)}.bmc-btn{display:inline-block;background:#FFDD00;color:#000;font-weight:700;padding:.7rem 1.4rem;border-radius:10px;text-decoration:none}.bmc-btn:hover{opacity:.88}
+.cta a{display:inline-block;margin:.2rem .4rem;padding:.5rem 1rem;border:1px solid var(--accent);border-radius:6px;text-decoration:none}
+footer{margin-top:3rem;color:var(--muted);font-size:.9rem;text-align:center}
+dialog#lb{border:0;padding:0;background:rgba(0,0,0,.92);width:100vw;height:100vh;max-width:none;max-height:none;overflow:auto}
+dialog#lb::backdrop{background:#000}
+#lb .box{min-height:100%;display:flex;align-items:center;justify-content:center;padding:2.5rem 12px 12px}
+#lb img{display:block;max-width:100%;max-height:calc(100vh - 3.5rem);width:auto;height:auto;cursor:zoom-in;border-radius:6px}
+#lb.full .box{display:block;width:max-content}
+#lb.full img{max-width:none;max-height:none;cursor:zoom-out}
+#lb .close{position:fixed;top:8px;right:12px;z-index:1;background:#313244;color:#cdd6f4;border:1px solid #585b70;border-radius:6px;padding:.3rem .8rem;font:inherit;cursor:pointer}
+#lb .hint{position:fixed;top:12px;left:14px;color:#a6adc8;font-size:.85rem}
+</style>
+</head>
+<body>
+<main>
+<header>
+<img class="logo" src="assets/logo.svg" alt="Gitunia logo">
+<h1>Gitunia</h1>
+<p class="lead">A keyboard-first terminal Git client: a real commit graph, first-class branches and worktrees, vim-style modal navigation. The mouse is optional but fully functional.</p>
+<p class="cta">
+<a href="https://github.com/Aleksanderis/Gitunia/releases/latest">Download latest release</a>
+<a href="https://github.com/Aleksanderis/Gitunia">Source on GitHub</a>
+</p>
+</header>
+
+<img class="demo" src="media/demo.gif" alt="Gitunia demo: graph, branch switch, worktree, staging lines, commit">
+
+<!-- Features and Install mirror README.md; update both together. -->
+<h2>Features</h2>
+<div class="gallery">
+<section class="feature">
+<div class="ft"><h3>Commit graph</h3>
+<p>A real commit graph that scrolls and searches through 100k+ commits, with branches and tags drawn on the history.</p></div>
+<a class="zoom" href="media/features/default.png" title="Click to enlarge"><img src="media/features/default.png" width="1464" height="944" alt="Gitunia commit graph with branch and tag labels beside the history list" loading="lazy"></a>
+</section>
+<section class="feature">
+<div class="ft"><h3>Tabs and repository picker</h3>
+<p>A standalone multi-repository client: open repositories in tabs, pick them with the repository picker and get your session back on the next start.</p></div>
+<a class="zoom" href="media/features/opener.png" title="Click to enlarge"><img src="media/features/opener.png" width="1464" height="944" alt="Five repository tabs on top and the repository picker listing open, pinned and recent repositories" loading="lazy"></a>
+</section>
+<section class="feature">
+<div class="ft"><h3>Help screen</h3>
+<p>Press ? to see the keys of the current view, with a filter to find a key fast.</p></div>
+<a class="zoom" href="media/features/help.png" title="Click to enlarge"><img src="media/features/help.png" width="1464" height="944" alt="Help screen listing the keys of the current view" loading="lazy"></a>
+</section>
+<section class="feature">
+<div class="ft"><h3>Staging and commits</h3>
+<p>Stage files, hunks and single lines, then commit or amend, with the message box in the same view.</p></div>
+<a class="zoom" href="media/features/working-commit.png" title="Click to enlarge"><img src="media/features/working-commit.png" width="1464" height="944" alt="Changes view with unstaged and staged files, a diff and a commit message being written" loading="lazy"></a>
+</section>
+<section class="feature">
+<div class="ft"><h3>Diffs</h3>
+<p>Unified and side-by-side diffs, also between any two commits.</p></div>
+<a class="zoom" href="media/features/split.png" title="Click to enlarge"><img src="media/features/split.png" width="1944" height="944" alt="Side-by-side diff of a commit next to the graph" loading="lazy"></a>
+</section>
+<section class="feature">
+<div class="ft"><h3>Worktrees</h3>
+<p>Worktrees are a first-class view next to branches: see which branch each one has checked out, switch to one or open it in its own tab.</p></div>
+<a class="zoom" href="media/features/worktrees.png" title="Click to enlarge"><img src="media/features/worktrees.png" width="1464" height="944" alt="Wide sidebar listing three linked worktrees with their branches and the worktree actions menu" loading="lazy"></a>
+</section>
+<section class="feature">
+<div class="ft"><h3>Stashes</h3>
+<p>Stashes are a first-class view in the sidebar.</p></div>
+<a class="zoom" href="media/features/stash.png" title="Click to enlarge"><img src="media/features/stash.png" width="1464" height="944" alt="Stashes section of the sidebar with a stash and its files" loading="lazy"></a>
+</section>
+<section class="feature">
+<div class="ft"><h3>3-way conflict editor</h3>
+<p>Resolve merge conflicts in a 3-way editor: base, ours and theirs above, the result below.</p></div>
+<a class="zoom" href="media/features/conflict-editor.png" title="Click to enlarge"><img src="media/features/conflict-editor.png" width="1464" height="944" alt="Conflict editor with base, ours and theirs panes above the result pane" loading="lazy"></a>
+</section>
+<section class="feature">
+<div class="ft"><h3>Interactive rebase</h3>
+<p>Edit the commits of an interactive rebase in a dedicated editor: squash, reword or drop.</p></div>
+<a class="zoom" href="media/features/rebase-editor.png" title="Click to enlarge"><img src="media/features/rebase-editor.png" width="1464" height="944" alt="Interactive rebase editor listing commits with their actions" loading="lazy"></a>
+</section>
+<section class="feature">
+<div class="ft"><h3>Reflog and undo</h3>
+<p>The reflog browser is the undo path for destructive actions: pick an earlier state and reset or branch from it.</p></div>
+<a class="zoom" href="media/features/reflog.png" title="Click to enlarge"><img src="media/features/reflog.png" width="1464" height="944" alt="Reflog list of HEAD with the keys to reset, branch or check out" loading="lazy"></a>
+</section>
+<section class="feature">
+<div class="ft"><h3>Command palette</h3>
+<p>Press : to search every command by name, with its key shown next to it. Keys are configurable and mouse support is full.</p></div>
+<a class="zoom" href="media/features/palette.png" title="Click to enlarge"><img src="media/features/palette.png" width="1464" height="944" alt="Command palette listing commands over the commit graph" loading="lazy"></a>
+</section>
+</div>
+
+<h2>Install</h2>
+<p>Needs Git 2.43 or newer on your <code>PATH</code>. Take the files for your system from the <a href="https://github.com/Aleksanderis/Gitunia/releases/latest">latest release</a>.</p>
+<h3>Debian / Ubuntu</h3>
+<pre><code>sudo apt install ./gitunia_&lt;version&gt;_amd64.deb</code></pre>
+<h3>Fedora / RHEL</h3>
+<pre><code>sudo dnf install ./gitunia-&lt;version&gt;-1.x86_64.rpm</code></pre>
+<h3>Arch / Omarchy</h3>
+<pre><code>sudo pacman -U gitunia-&lt;version&gt;-1-x86_64.pkg.tar.zst</code></pre>
+<h3>Windows</h3>
+<pre><code>Expand-Archive gitunia-&lt;version&gt;-win-x64.zip
+# put gitunia.exe on your PATH</code></pre>
+<h3>macOS (Apple silicon)</h3>
+<pre><code>tar xzf gitunia-&lt;version&gt;-osx-arm64.tar.gz
+# put gitunia on your PATH</code></pre>
+<p>macOS should work, but is not fully tested yet, and the binary is unsigned.</p>
+<h3>Other Linux</h3>
+<pre><code>tar xzf gitunia-&lt;version&gt;-linux-x64.tar.gz
+# put gitunia on your PATH</code></pre>
+<p>Check any download against its <code>.sha256</code> file. Building from source and more details are in the <a href="https://github.com/Aleksanderis/Gitunia/blob/main/docs/user-guide.md#install">user guide</a>.</p>
+
+<h2>Quick start</h2>
+<pre><code>gitunia                 # restore last session, or open the picker
+gitunia ~/Projects/foo  # open a repository (any subfolder works)</code></pre>
+<p>In the picker type to filter or type a path. <code>Enter</code> opens it in a tab. <code>?</code> shows the keys of the current view, <code>:</code> opens the command palette, <code>q</code> quits.</p>
+
+<h2>Docs</h2>
+<ul>
+<li><a href="https://github.com/Aleksanderis/Gitunia/blob/main/docs/user-guide.md">User guide</a></li>
+<li><a href="https://github.com/Aleksanderis/Gitunia/blob/main/docs/customising-keys.md">Customising keys</a> and <a href="https://github.com/Aleksanderis/Gitunia/blob/main/docs/keymap.md">key reference</a></li>
+<li><a href="https://github.com/Aleksanderis/Gitunia/blob/main/CONTRIBUTING.md">Contributing</a></li>
+</ul>
+
+<section class="support">
+<p>If Gitunia saves you time, consider supporting its development.</p>
+<a class="bmc-btn" href="https://buymeacoffee.com/aleksanderis" target="_blank" rel="noopener">&#9749; Buy me a coffee</a>
+</section>
+<footer>MIT License. No analytics, no cookies.</footer>
+</main>
+<dialog id="lb" aria-label="Screenshot"><button class="close" type="button" aria-label="Close">Close (Esc)</button><div class="hint">Click the image to switch between fit and full size</div><div class="box"><img alt=""></div></dialog>
+<script>
+(function(){var d=document.getElementById("lb");if(!d||!d.showModal)return;var im=d.querySelector("img");
+document.querySelectorAll("a.zoom").forEach(function(a){a.addEventListener("click",function(e){if(e.metaKey||e.ctrlKey||e.shiftKey)return;e.preventDefault();var t=a.querySelector("img");im.src=a.href;im.alt=t?t.alt:"";d.classList.remove("full");d.showModal();d.scrollTo(0,0)})});
+im.addEventListener("click",function(e){e.stopPropagation();d.classList.toggle("full")});
+d.querySelector(".close").addEventListener("click",function(){d.close()});
+d.addEventListener("click",function(e){if(e.target===d||e.target.classList.contains("box"))d.close()});
+})();
+</script>
+</body>
+</html>
