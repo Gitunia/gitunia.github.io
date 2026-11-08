@@ -175,6 +175,9 @@ dialog#lb::backdrop{background:#000}
 <h3>Windows (x64, arm64)</h3>
 <pre><code>irm https://raw.githubusercontent.com/Aleksanderis/Gitunia/main/scripts/install.ps1 | iex</code></pre>
 <p>Installs to <code>%LOCALAPPDATA%\Gitunia</code> and adds it to your user <code>PATH</code>, no admin rights.</p>
+<h3>macOS and Linux (Homebrew)</h3>
+<pre><code>brew install aleksanderis/tap/gitunia</code></pre>
+<p>macOS (Apple silicon) and Linux (x64, arm64).</p>
 <h2>Manual install</h2>
 <p>Take the files for your system from the <a href="https://github.com/Aleksanderis/Gitunia/releases/latest">latest release</a>.</p>
 <h3>Debian / Ubuntu</h3>
@@ -189,7 +192,6 @@ dialog#lb::backdrop{background:#000}
 <h3>macOS (Apple silicon)</h3>
 <pre><code>tar xzf gitunia-&lt;version&gt;-osx-arm64.tar.gz
 # put gitunia on your PATH</code></pre>
-<p>macOS should work, but is not fully tested yet, and the binary is unsigned.</p>
 <h3>Other Linux</h3>
 <pre><code>tar xzf gitunia-&lt;version&gt;-linux-x64.tar.gz   # linux-arm64 on arm64
 # put gitunia on your PATH</code></pre>
