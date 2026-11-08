@@ -29,6 +29,15 @@
 <style>
 :root{--bg:#1e1e2e;--fg:#cdd6f4;--muted:#a6adc8;--accent:#89b4fa;--panel:#181825;--border:#313244}
 @media (prefers-color-scheme:light){:root{--bg:#eff1f5;--fg:#4c4f69;--muted:#6c6f85;--accent:#1e66f5;--panel:#e6e9ef;--border:#ccd0da}}
+html{scroll-behavior:smooth;scroll-padding-top:4rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+nav.top{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.5rem 16px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+nav.top a{color:var(--fg);text-decoration:none;display:inline-flex;align-items:center;gap:.4rem}
+nav.top a:hover{color:var(--accent)}
+nav.top .brand{font-weight:700;font-size:1.1rem}
+nav.top .links{display:flex;align-items:center;gap:1.1rem}
+.ic{width:1.1em;height:1.1em;vertical-align:-.15em}
+@media (max-width:40rem){nav.top .links{gap:.8rem;font-size:.9rem}nav.top .links a[href^="#"]:not([href="#features"]):not([href="#install"]){display:none}nav.top .links a:not([href^="#"]) span{display:none}nav.top .links a:not([href^="#"]) .ic{width:1.4em;height:1.4em}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,sans-serif}
 main{max-width:52rem;margin:0 auto;padding:2rem 16px 4rem}
@@ -61,7 +70,17 @@ dialog#lb::backdrop{background:#000}
 #lb .hint{position:fixed;top:12px;left:14px;color:#a6adc8;font-size:.85rem}
 </style>
 </head>
-<body>
+<body id="top">
+<nav class="top" aria-label="Main">
+<a class="brand" href="#top"><img src="assets/logo.svg" alt="" width="24" height="24">Gitunia</a>
+<div class="links">
+<a href="#features">Features</a>
+<a href="#install">Install</a>
+<a href="#docs">Docs</a>
+<a href="https://github.com/Aleksanderis/Gitunia/releases/latest"><svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7.25 7.689V2a.75.75 0 011.5 0v5.689l1.97-1.969a.749.749 0 111.06 1.06l-3.25 3.25a.749.749 0 01-1.06 0L4.22 6.78a.749.749 0 111.06-1.06zM2.75 12.5h10.5a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5z"/></svg><span>Releases</span></a>
+<a class="gh" href="https://github.com/Aleksanderis/Gitunia" aria-label="Gitunia on GitHub"><svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span>GitHub</span></a>
+</div>
+</nav>
 <main>
 <header>
 <img class="logo" src="assets/logo.svg" alt="Gitunia logo">
@@ -69,14 +88,14 @@ dialog#lb::backdrop{background:#000}
 <p class="lead">A keyboard-first terminal Git client: a real commit graph, first-class branches and worktrees, vim-style modal navigation. The mouse is optional but fully functional.</p>
 <p class="cta">
 <a href="https://github.com/Aleksanderis/Gitunia/releases/latest">Download latest release</a>
-<a href="https://github.com/Aleksanderis/Gitunia">Source on GitHub</a>
+<a href="https://github.com/Aleksanderis/Gitunia"><svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> Source on GitHub</a>
 </p>
 </header>
 
 <img class="demo" src="media/demo.gif" alt="Gitunia demo: graph, branch switch, worktree, staging lines, commit">
 
 <!-- Features and Install mirror README.md; update both together. -->
-<h2>Features</h2>
+<h2 id="features">Features</h2>
 <div class="gallery">
 <section class="feature">
 <div class="ft"><h3>Commit graph</h3>
@@ -135,7 +154,7 @@ dialog#lb::backdrop{background:#000}
 </section>
 </div>
 
-<h2>Install</h2>
+<h2 id="install">Install</h2>
 <p>Needs Git 2.43 or newer on your <code>PATH</code>. Take the files for your system from the <a href="https://github.com/Aleksanderis/Gitunia/releases/latest">latest release</a>.</p>
 <h3>Debian / Ubuntu</h3>
 <pre><code>sudo apt install ./gitunia_&lt;version&gt;_amd64.deb</code></pre>
@@ -155,12 +174,12 @@ dialog#lb::backdrop{background:#000}
 # put gitunia on your PATH</code></pre>
 <p>Check any download against its <code>.sha256</code> file. Building from source and more details are in the <a href="https://github.com/Aleksanderis/Gitunia/blob/main/docs/user-guide.md#install">user guide</a>.</p>
 
-<h2>Quick start</h2>
+<h2 id="quick-start">Quick start</h2>
 <pre><code>gitunia                 # restore last session, or open the picker
 gitunia ~/Projects/foo  # open a repository (any subfolder works)</code></pre>
 <p>In the picker type to filter or type a path. <code>Enter</code> opens it in a tab. <code>?</code> shows the keys of the current view, <code>:</code> opens the command palette, <code>q</code> quits.</p>
 
-<h2>Docs</h2>
+<h2 id="docs">Docs</h2>
 <ul>
 <li><a href="https://github.com/Aleksanderis/Gitunia/blob/main/docs/user-guide.md">User guide</a></li>
 <li><a href="https://github.com/Aleksanderis/Gitunia/blob/main/docs/customising-keys.md">Customising keys</a> and <a href="https://github.com/Aleksanderis/Gitunia/blob/main/docs/keymap.md">key reference</a></li>
