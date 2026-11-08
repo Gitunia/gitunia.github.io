@@ -156,22 +156,30 @@ dialog#lb::backdrop{background:#000}
 </div>
 
 <h2 id="install">Install</h2>
-<p>Needs Git 2.43 or newer on your <code>PATH</code>. Take the files for your system from the <a href="https://github.com/Aleksanderis/Gitunia/releases/latest">latest release</a>.</p>
+<p>Needs Git 2.43 or newer on your <code>PATH</code>. One line installs the latest release; run it again to update.</p>
+<h3>Linux (x64, arm64)</h3>
+<pre><code>curl -fsSL https://raw.githubusercontent.com/Aleksanderis/Gitunia/main/scripts/install.sh | sh</code></pre>
+<p>Uses the native package on Arch / Omarchy, Debian / Ubuntu and Fedora (needs root or sudo), otherwise puts <code>gitunia</code> in <code>~/.local/bin</code>.</p>
+<h3>Windows (x64, arm64)</h3>
+<pre><code>irm https://raw.githubusercontent.com/Aleksanderis/Gitunia/main/scripts/install.ps1 | iex</code></pre>
+<p>Installs to <code>%LOCALAPPDATA%\Gitunia</code> and adds it to your user <code>PATH</code>, no admin rights.</p>
+<h2>Manual install</h2>
+<p>Take the files for your system from the <a href="https://github.com/Aleksanderis/Gitunia/releases/latest">latest release</a>.</p>
 <h3>Debian / Ubuntu</h3>
-<pre><code>sudo apt install ./gitunia_&lt;version&gt;_amd64.deb</code></pre>
+<pre><code>sudo apt install ./gitunia_&lt;version&gt;_amd64.deb   # _arm64.deb on arm64</code></pre>
 <h3>Fedora / RHEL</h3>
-<pre><code>sudo dnf install ./gitunia-&lt;version&gt;-1.x86_64.rpm</code></pre>
+<pre><code>sudo dnf install ./gitunia-&lt;version&gt;-1.x86_64.rpm   # .aarch64.rpm on arm64</code></pre>
 <h3>Arch / Omarchy</h3>
-<pre><code>sudo pacman -U gitunia-&lt;version&gt;-1-x86_64.pkg.tar.zst</code></pre>
+<pre><code>sudo pacman -U gitunia-&lt;version&gt;-1-x86_64.pkg.tar.zst   # aarch64 on arm64</code></pre>
 <h3>Windows</h3>
-<pre><code>Expand-Archive gitunia-&lt;version&gt;-win-x64.zip
+<pre><code>Expand-Archive gitunia-&lt;version&gt;-win-x64.zip   # win-arm64 on arm64
 # put gitunia.exe on your PATH</code></pre>
 <h3>macOS (Apple silicon)</h3>
 <pre><code>tar xzf gitunia-&lt;version&gt;-osx-arm64.tar.gz
 # put gitunia on your PATH</code></pre>
 <p>macOS should work, but is not fully tested yet, and the binary is unsigned.</p>
 <h3>Other Linux</h3>
-<pre><code>tar xzf gitunia-&lt;version&gt;-linux-x64.tar.gz
+<pre><code>tar xzf gitunia-&lt;version&gt;-linux-x64.tar.gz   # linux-arm64 on arm64
 # put gitunia on your PATH</code></pre>
 <p>Check any download against its <code>.sha256</code> file. Building from source and more details are in the <a href="https://github.com/Aleksanderis/Gitunia/blob/main/docs/user-guide.md#install">user guide</a>.</p>
 
